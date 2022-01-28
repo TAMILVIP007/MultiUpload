@@ -34,11 +34,10 @@ async def start(event):
 	xx = await event.get_chat()
 	if event.is_private and not await check_participant(user_id, f'@{os.environ.get("CHNLUSRNME")}', event):
 		return
-	else:
-		await anjana.send_file(event.chat_id, random.choice(s), reply_to=event)
-		await event.reply(f"Hey [{xx.first_name}]({xx.id}), I am **MultiUploader**", buttons=[
-				Button.url('Support Chat 💭', 't.me/harp_chat')
-			])
+	await anjana.send_file(event.chat_id, random.choice(s), reply_to=event)
+	await event.reply(f"Hey [{xx.first_name}]({xx.id}), I am **MultiUploader**", buttons=[
+			Button.url('Support Chat 💭', 't.me/harp_chat')
+		])
 
 
 @anjana.on(events.NewMessage(pattern='^/help'))
@@ -49,8 +48,7 @@ async def help(event):
 	xx = await event.get_chat()
 	if event.is_private and not await check_participant(user_id, f'@{os.environ.get("CHNLUSRNME")}', event):
 		return
-	else:
-		helpmsg = '''
+	helpmsg = '''
 ➖ **Help Menu | MultiUpload** ➖
 ● `/gofile` - Upload files to GoFile
 ● `/anonfile` - Upload files to AnonFile
@@ -63,6 +61,6 @@ async def help(event):
 
 ✦ **Powered By [Harp Tech]**(t.me/harp_tech)
 ✦ Made with ♥️ by [Anjana](t.me/anjana_ma)'''
-		await event.reply(helpmsg,
-		buttons=[Button.url('Support Chat 💭', 't.me/harp_chat')],
-		link_preview=False)
+	await event.reply(helpmsg,
+	buttons=[Button.url('Support Chat 💭', 't.me/harp_chat')],
+	link_preview=False)

@@ -32,9 +32,10 @@ async def progress(current, total, event, start, type_of_ps):
         estimated_total_time = elapsed_time + time_to_completion
         progress_str = "[{0}{1}]\n● **Percent:** {2}%\n".format(
             "".join(["◾️" for i in range(math.floor(percentage / 12.5))]),
-            "".join(["▫️" for i in range(8 - math.floor(percentage / 12.5))]),
+            "".join(["▫️" for _ in range(8 - math.floor(percentage / 12.5))]),
             round(percentage, 2),
         )
+
         tmp = progress_str + "● **Status:** {0} of {1}\n● **Speed:** {2}/s\n● **ETA:** {3}".format(
             humanbytes(current), humanbytes(total), humanbytes(speed), time_formatter(estimated_total_time)
         )
